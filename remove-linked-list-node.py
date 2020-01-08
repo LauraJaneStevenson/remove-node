@@ -24,14 +24,7 @@ class Node(object):
 
         return "".join(out)
 
-four_node = Node(4)
-three_node = Node(3, four_node)
-two_node = Node(2, three_node)
-one_node = Node(1, two_node)
-
-print(one_node.as_string())
-
-def remove_node(node):
+def remove_node(node,ll):
     """Given a node in a linked list, remove it.
 
     Remove this node from a linked list. Note that we do not have access to
@@ -40,4 +33,48 @@ def remove_node(node):
     Does not return anything; changes list in place.
     """
 
-    pass
+    # set current equal to head of linked-list
+    current = ll
+
+    # check if head to linked-list is node
+    if current == node:
+
+        # set data and next of current node 
+        # to data and next of next node
+        current.data = current.next.data
+        current.next = current.next.next
+
+    # loop over list
+    while current:
+
+        # if next node is node we are looking for
+        if current.next == node:
+
+            # remove the link to the next node
+            current.next = current.next.next
+
+        else:
+
+            # loop
+            current = current.next
+
+four_node = Node(4)
+three_node = Node(3, four_node)
+two_node = Node(2, three_node)
+one_node = Node(1, two_node)
+
+remove_node(three_node,one_node)
+print(one_node.as_string())
+
+
+
+
+
+
+
+
+
+
+
+
+
